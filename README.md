@@ -5,7 +5,7 @@ Se puede implementar desde el browser o desde el servidor
 ## Installing
 
 ```bash
-$ npm install firmafiel
+$ npm install @sfp-gob-mx/firmafiel
 ```
 
 ## Stages
@@ -17,7 +17,7 @@ $ npm install firmafiel
 Ejemplo:
 
 ```javascript
-var firmafiel = require("firmafiel");
+var firmafiel = require("@sfp-gob-mx/firmafiel");
 var fs = require("fs");
 
 var privateKey = fs.readFileSync("PRIVATEKEY.key");

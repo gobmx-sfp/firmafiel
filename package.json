@@ -8,16 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.funcionpublica.gob.mx/llucio/sfp-firma-fiel.git"
+    "url": "git@gitlab.funcionpublica.gob.mx:llucio/sfpfirmafiel.git"
   },
   "keywords": [
-    "firma electrónica",
+    "firma",
+    "electrónica",
     "FIEL",
     "SFP",
     "OCSP",
-    "SAT"
+    "SAT",
+    "PKI"
   ],
-  "author": "Luis Alberto Lucio Pedraza",
+  "author": "Luis Lucio",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
