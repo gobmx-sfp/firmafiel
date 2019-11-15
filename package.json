@@ -1,5 +1,5 @@
 {
-  "name": "firmafiel",
+  "name": "@sfp-gob-mx/firmafiel",
   "version": "1.0.0",
   "description": "Validador certificados SSL con verificacion OCSP-Externa",
   "main": "index.js",
@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
+    "buffer": "^5.4.3",
     "crypto": "^1.0.1",
     "node-forge": "^0.9.1",
     "object-hash": "^2.0.0",

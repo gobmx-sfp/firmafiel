@@ -4,6 +4,7 @@ const hash = require("object-hash");
 const ocsp = require("ocsp");
 const axios = require("axios");
 const forge = require("node-forge");
+const Buffer = require('buffer/').Buffer 
 
 class firmafiel {
   constructor() {
