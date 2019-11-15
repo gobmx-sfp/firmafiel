@@ -1,57 +1,29 @@
 {
-  "name": "@hodgef/js-library-boilerplate-basic",
-  "version": "1.0.20",
-  "description": "Javascript Minimal Starter Kit for building libraries",
-  "main": "build/index.js",
+  "name": "firmafiel",
+  "version": "1.0.0",
+  "description": "Validador certificados SSL con verificacion OCSP-Externa",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "test": "jest",
-    "prepare": "npm run build",
-    "trypublish": "npm publish || true"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hodgef/js-library-boilerplate-basic"
+    "url": "https://gitlab.funcionpublica.gob.mx/llucio/sfp-firma-fiel.git"
   },
-  "author": "Francisco Hodge <hello@franciscohodge.com> (https://github.com/hodgef)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hodgef/js-library-boilerplate-basic/issues"
-  },
-  "homepage": "https://github.com/hodgef/js-library-boilerplate-basic",
   "keywords": [
-    "library",
-    "starter",
-    "es6"
+    "firma electrónica",
+    "FIEL",
+    "SFP",
+    "OCSP",
+    "SAT"
   ],
-  "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/plugin-proposal-class-properties": "^7.7.0",
-    "@babel/polyfill": "^7.7.0",
-    "@babel/preset-env": "^7.7.1",
-    "babel-loader": "^8.0.6",
-    "babel-preset-minify": "^0.5.0",
-    "css-loader": "^3.0.0",
-    "file-loader": "^4.0.0",
-    "jest": "^24.8.0",
-    "prettier": "^1.18.2",
-    "prettier-webpack-plugin": "^1.2.0",
-    "style-loader": "^1.0.0",
-    "url-loader": "^2.0.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
-  },
+  "author": "Luis Alberto Lucio Pedraza",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
-    "firmafiel": "file:modulo",
-    "module": "^1.2.5"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/scripts/testMock.js",
-      "\\.(css|less)$": "<rootDir>/scripts/testMock.js"
-    },
-    "testEnvironment": "node"
+    "crypto": "^1.0.1",
+    "node-forge": "^0.9.1",
+    "object-hash": "^2.0.0",
+    "ocsp": "^1.2.0"
   }
 }
