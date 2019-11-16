@@ -1,4 +1,4 @@
-# Api de Firmado electronico PKI
+# Api de Firmado electrónico PKI
 
 Se puede implementar desde el browser o desde el servidor
 
@@ -10,9 +10,9 @@ $ npm install @sfp-gob-mx/firmafiel
 
 ## Stages
 
-1. verificación del certificado via OCSP
+1. verificación del certificado vía OCSP
 2. firmado desde el navegador
-3. validacion de cadenas firmadas
+3. validación de cadenas firmadas
 
 Ejemplo:
 
@@ -81,7 +81,7 @@ const privatekey = fs.readFileSync("privatekey.key");
 const pemkey = firmafiel.keyBufferToPem({ derBuffer: privatekey });
 ```
 
-Verificar un certificado via OCSP
+Verificar un certificado vía OCSP
 
 ```javascript
 const verified = firmafiel.verificarCertificado({ certificado: pem }); //true | false
@@ -134,7 +134,7 @@ const validado = firmafiel.validaRfcFromForgeCert({
 });
 ```
 
-Recibe el certificado , la llave privada y el password de la llave privada(string)
+Recibe el certificado, la llave privada y el password de la llave privada(string)
 devuelve true si la llave pública del certificado corresponde con la llave pública generada por la llave primaria
 
 ```javascript
@@ -151,7 +151,7 @@ const valid = firmafiel.validaCertificadosFromBuffer({
 }); //true | false
 ```
 
-Recibe el certificado en formato pem ,la llave privada en formato pem(encriptada), el password de la llave privada(para desencriptarla), la cadena a firmar
+Recibe el certificado en formato pem, la llave privada en formato pem(encriptada), el password de la llave privada (para desencriptarla), la cadena a firmar
 devuelve la cadena firmada en formato pem -----BEGIN PKCS7-----
 
 ```javascript
@@ -163,14 +163,14 @@ const signature = firmafiel.firmarCadena({
 });
 ```
 
-Verifica una firma devuelve true/false recibe la llave pública en formato pem , la cadena que se firmo, y la firma PKCS#7 en formato PEM
+Verifica una firma devuelve true/false recibe la llave pública en formato pem, la cadena que se firmó, y la firma PKCS#7 en formato PEM
 
 ```javascript
 const verified = firmafiel.verificarFirma({ pempublica: pem, cadena: "TEST" , pemfirma: signature }): //true | false
 ```
 
 **Notas**: Falta implementar el protocolo ocsp desde el browser
-la libreria ocsp nos permite validar los certificados pero se tiene que modificar
+la librería ocsp nos permite validar los certificados, pero se tiene que modificar
 para que acepte una url y host en caso de que el certificado no los tenga, como es el
 caso de los certificados del SAT en México.
 
