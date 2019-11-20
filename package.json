@@ -1,25 +1,25 @@
 {
   "name": "@sfp-gob-mx/firmafiel",
   "version": "1.0.2",
-  "description": "Validador certificados SSL con verificacion OCSP-Externa",
-  "main": "index.js",
+  "description": "Validador de certificados SSL con verificación OCSP externa",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.funcionpublica.gob.mx:llucio/sfpfirmafiel.git"
+    "url": "https://github.com/gobmx-sfp/SfpFirmaFiel.git"
   },
   "keywords": [
     "firma",
     "electrónica",
+    "SSL",
     "FIEL",
-    "SFP",
     "OCSP",
     "SAT",
     "PKI"
   ],
-  "author": "Luis Lucio",
+  "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
