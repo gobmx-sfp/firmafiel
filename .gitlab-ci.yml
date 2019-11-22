@@ -5,7 +5,7 @@ image: node:latest
 
 variables:
   POSTGRES_USER: $CI_ENVIRONMENT_SLUG
-  NODE_AUTH_TOKEN: $NODE_AUTH_TOKEN
+  NODE_AUTH_TOKEN: ${NODE_AUTH_TOKEN}
 
 
 # Pick zero or more services to be used on all builds.
@@ -24,8 +24,8 @@ cache:
 
 publish:
   script:
-    - echo '//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN'>.npmrc
-    - echo '//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN'
+    - echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'>.npmrc
+    - echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'
     - npm ci
 #    - npm test #comentado porque falta definir tests
     - npm publish --verbose
