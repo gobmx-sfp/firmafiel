@@ -24,6 +24,7 @@ cache:
 
 publish:
   script:
+    - npm config set //registry.npmjs.org/:_authToken $NODE_AUTH_TOKEN
     - npm ci
 #    - npm test #comentado porque falta definir tests
-    - npm publish
+    - npm publish --verbose
