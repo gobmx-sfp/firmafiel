@@ -3,15 +3,13 @@
 # https://hub.docker.com/r/library/node/tags/
 image: node:latest
 
-variables:
-  POSTGRES_USER: $CI_ENVIRONMENT_SLUG
-  NODE_AUTH_TOKEN: ${NODE_AUTH_TOKEN}
-
+# variables:
+#   POSTGRES_USER: $CI_ENVIRONMENT_SLUG
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
-services:
+#services:
 #  - mysql:latest
 #  - redis:latest
 #  - postgres:latest
@@ -24,8 +22,8 @@ cache:
 
 publish:
   script:
-    - echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'>.npmrc
-    - echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'
+    - echo '//registry.npmjs.org/:_authToken=$NPM_TOKEN'>.npmrc
+    - echo '//registry.npmjs.org/:_authToken=$NPM_TOKEN'
     - npm ci
 #    - npm test #comentado porque falta definir tests
     - npm publish --verbose

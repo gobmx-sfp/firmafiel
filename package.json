@@ -1,10 +1,12 @@
 {
-  "name": "@sfp-gob-mx/firmafiel",
-  "version": "1.0.3",
+  "name": "@gobmx-sfp/firmafiel",
+  "version": "1.0.0",
   "description": "Validador de certificados SSL con verificación OCSP externa",
-  "main": "src/index.js",
+  "main": "dist/firmafiel.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -13,11 +15,11 @@
   "keywords": [
     "firma",
     "electrónica",
-    "SSL",
-    "FIEL",
-    "OCSP",
-    "SAT",
-    "PKI"
+    "ssl",
+    "fiel",
+    "ocsp",
+    "sat",
+    "pki"
   ],
   "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
   "license": "MIT",
@@ -28,5 +30,16 @@
     "node-forge": "^0.9.1",
     "object-hash": "^2.0.0",
     "ocsp": "^1.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/gobmx-sfp/SfpFirmaFiel/issues"
+  },
+  "homepage": "https://github.com/gobmx-sfp/SfpFirmaFiel#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
