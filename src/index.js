@@ -1,7 +1,7 @@
 "use strict";
 const crypto = require("crypto");
 const hash = require("object-hash");
-const ocsp = require("ocsp");
+// const ocsp = require("ocsp");
 const axios = require("axios");
 const forge = require("node-forge");
 const Buffer = require('buffer-ponyfill');
@@ -310,54 +310,54 @@ class firmafiel {
   //la libreria ocsp no permite cambiar la url ni el host del request OCSP porque los busca en el certificado.
   //falta implementar el protocolo ocsp en browser solo se tendria que modificar la libreria para que agrege las url y host que deseamos
   //que pasamos via key , value
-  async ocspAsync({ issuer, pem, key, value }) {
-    return new Promise(function(resolve, reject) {
-      var loquesea = ocsp.check(
-        {
-          cert: pem,
-          issuer: issuer
-        },
-        function(err, res) {
-          if (err) reject(err);
-          else resolve(res);
-        }
-      );
-    }).catch(error => {});
-  }
+  // async ocspAsync({ issuer, pem, key, value }) {
+  //   return new Promise(function(resolve, reject) {
+  //     var loquesea = ocsp.check(
+  //       {
+  //         cert: pem,
+  //         issuer: issuer
+  //       },
+  //       function(err, res) {
+  //         if (err) reject(err);
+  //         else resolve(res);
+  //       }
+  //     );
+  //   }).catch(error => {});
+  // }
 
   //recibe el certificado en formato PEM
-  async validaOCSP({ pem }) {
-    //const buf1 = Buffer.from(pem);
-    var arrayLength = this.acs.length;
-    for (var i = 0; i < arrayLength; i++) {
-      for (var [key, value] of this.map) {
-        try {
-          var certdata = this.mapcerts.get(this.acs[i]);
-          var respuestaOCSP = await this.ocspAsync({
-            issuer: certdata,
-            pem: pem,
-            key: key,
-            value: value
-          });
-          if (respuestaOCSP.indexOf("good") !== -1) {
-            respuestaOCSP = "good";
-            return { status: respuestaOCSP };
-          }
-          if (respuestaOCSP.indexOf("revoked") !== -1) {
-            respuestaOCSP = "revoked";
-            return { status: respuestaOCSP };
-          }
-          if (respuestaOCSP.indexOf("unknown") !== -1) {
-            respuestaOCSP = "unknown";
-            return { status: respuestaOCSP };
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    }
-    return { status: "unknown" };
-  }
+  // async validaOCSP({ pem }) {
+  //   //const buf1 = Buffer.from(pem);
+  //   var arrayLength = this.acs.length;
+  //   for (var i = 0; i < arrayLength; i++) {
+  //     for (var [key, value] of this.map) {
+  //       try {
+  //         var certdata = this.mapcerts.get(this.acs[i]);
+  //         var respuestaOCSP = await this.ocspAsync({
+  //           issuer: certdata,
+  //           pem: pem,
+  //           key: key,
+  //           value: value
+  //         });
+  //         if (respuestaOCSP.indexOf("good") !== -1) {
+  //           respuestaOCSP = "good";
+  //           return { status: respuestaOCSP };
+  //         }
+  //         if (respuestaOCSP.indexOf("revoked") !== -1) {
+  //           respuestaOCSP = "revoked";
+  //           return { status: respuestaOCSP };
+  //         }
+  //         if (respuestaOCSP.indexOf("unknown") !== -1) {
+  //           respuestaOCSP = "unknown";
+  //           return { status: respuestaOCSP };
+  //         }
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     }
+  //   }
+  //   return { status: "unknown" };
+  // }
 }
 
 module.exports = new firmafiel();
