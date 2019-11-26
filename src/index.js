@@ -4,7 +4,7 @@ const hash = require("object-hash");
 const ocsp = require("ocsp");
 const axios = require("axios");
 const forge = require("node-forge");
-const Buffer = require("buffer/").Buffer;
+const Buffer = require('buffer-ponyfill');
 
 const ACSat1059 = require("./certs/AC-Sat1059");
 const ACSat1066 = require("./certs/AC-Sat1066");
