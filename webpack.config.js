@@ -16,6 +16,7 @@ module.exports = {
       path: path.resolve(__dirname, 'dist'),
       filename: 'firmafiel.js',
       library: '@gobmx-sfp/firmafiel',
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
+      globalObject: 'this'
     }
 };

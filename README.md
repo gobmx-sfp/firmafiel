@@ -26,7 +26,7 @@ var publicKey = fs.readFileSync("PUBLICKEY.cer");
 test = async () => {
   //convertir el archivo a formato PEM
   const pemPublicKey = firmafiel.certBufferToPem({ derBuffer: publicKey });
-  //verifica el certificado
+  //verifica el certificado via ocsp 
   var prueba = await firmafiel.verificarCertificado({
     certificado: pemPublicKey
   });
@@ -37,10 +37,12 @@ test = async () => {
   var firma = null; //donde quedara la firma
 
   const pemPrivateKey = firmafiel.keyBufferToPem({ derBuffer: privateKey });
-
+  
+ //si el resultado de la verificación OCSP es goood y  el rfc que tenemos coincide con el del certificado
+ //entonces procedemos a firmar la cadena 
   if (
     prueba.data.status === "good" && //good revoked unknown
-    firmafiel.validaRfcFromPem({ pem: pemPublicKey, rfc: rfc })
+    firmafiel.validaRfcFromPem({ pem: pemPublicKey, rfc: rfc }) //verificacion de rfc de la aplicación con el del certificado
   ) {
     firma = firmafiel.firmarCadena({
       pempublica: pemPublicKey,
@@ -52,9 +54,9 @@ test = async () => {
     console.log(firma);
   }
   var valid = firmafiel.verificarFirma({
-    pempublica: pem,
+    pempublica: pemPublicKey,
     cadena: "TEST",
-    pemfirma: cadenafirmada
+    pemfirma: firma
   });
 
   console.log(valid); //true | false
