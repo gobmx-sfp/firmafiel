@@ -1,12 +1,13 @@
 {
   "name": "@gobmx-sfp/firmafiel",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Validador de certificados SSL con verificación OCSP externa",
   "main": "dist/firmafiel.js",
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
     "start": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
