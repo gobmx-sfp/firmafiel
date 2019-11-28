@@ -18,5 +18,7 @@ module.exports = {
       library: '@gobmx-sfp/firmafiel',
       libraryTarget: 'umd',
       globalObject: 'this'
-    }
+    },
+    externals: ['axios','buffer/','crypto','node-forge','object-hash'],
+    devtool: 'source-map'
 };

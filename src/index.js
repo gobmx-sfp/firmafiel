@@ -4,36 +4,11 @@ const hash = require("object-hash");
 // const ocsp = require("ocsp");
 const axios = require("axios");
 const forge = require("node-forge");
-const Buffer = require('buffer-ponyfill');
-
-const ACSat1059 = require("./certs/AC-Sat1059");
-const ACSat1066 = require("./certs/AC-Sat1066");
-const ACSat1070 = require("./certs/AC-Sat1070");
-const ACSat1083 = require("./certs/AC-Sat1083");
-const ACSat1106 = require("./certs/AC-Sat1106");
-const AC1Sat1044 = require("./certs/AC1-Sat1044");
-const AC2Sat1043 = require("./certs/AC2-Sat1043");
+const Buffer = require('buffer/').Buffer;
+//const Buffer = require("buffer-ponyfill");
 
 class firmafiel {
   constructor() {
-    this.acs = [
-      "AC-Sat1059.crt",
-      "AC-Sat1066.crt",
-      "AC-Sat1070.crt",
-      "AC-Sat1083.crt",
-      "AC-Sat1106.crt",
-      "AC1-Sat1044.crt",
-      "AC2-Sat1043.crt"
-    ];
-    this.mapcerts = new Map();
-    this.mapcerts.set("AC-Sat1059.crt", ACSat1059);
-    this.mapcerts.set("AC-Sat1066.crt", ACSat1066);
-    this.mapcerts.set("AC-Sat1070.crt", ACSat1070);
-    this.mapcerts.set("AC-Sat1070.crt", ACSat1083);
-    this.mapcerts.set("AC-Sat1106.crt", ACSat1106);
-    this.mapcerts.set("AC1-Sat1044.crt", AC1Sat1044);
-    this.mapcerts.set("AC2-Sat1043.crt", AC2Sat1043);
-
     this.map = new Map();
     this.map.set("https://cfdi.sat.gob.mx/edofiel", "cfdi.sat.gob.mx");
     this.map.set("http://sat.gob.mx/ocsp", "sat.gob.mx");
@@ -276,9 +251,12 @@ class firmafiel {
     try {
       // pemfirma is the extracted Signature from the S/MIME
       // with added -----BEGIN PKCS7----- around it
-      var msg = forge.pkcs7.messageFromPem(pemfirma.firmapem);
+      var msg = forge.pkcs7.messageFromPem(pemfirma);
+      var attrs = msg.rawCapture.authenticatedAttributes; // got the list of auth attrs
       var sig = msg.rawCapture.signature;
-      var buf = Buffer.from(cadena, "binary");
+      var set = forge.asn1.create(forge.asn1.Class.UNIVERSAL, forge.asn1.Type.SET, true, attrs); // packed them inside of the SET object
+      var buf = Buffer.from(forge.asn1.toDer(set).data, 'binary');
+      //var buf = Buffer.from(cadena, "binary");
 
       //esta lógica solo verifica que los dos certificados sean iguales el del mensaje firmado y el proporcionado por el usuario
       //si se utilizan cadenas de certificados entonces habria que deshabilitar esta parte

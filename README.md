@@ -34,29 +34,33 @@ test = async () => {
   var rfc = "XXXXXXXXXXXXX"; //rfc
   var password = "secret"; //contraseña de la llave privada
   var cadena = "TEST"; // cadena a firmar
-  var firma = null; //donde quedara la firma
+  var firma = null; //objeto donde quedara la firma
 
   const pemPrivateKey = firmafiel.keyBufferToPem({ derBuffer: privateKey });
   
- //si el resultado de la verificación OCSP es goood y  el rfc que tenemos coincide con el del certificado
+ //si el resultado de la verificación OCSP es goood y  el rfc que tenemos(provisto por la aplicación que use esta libreria) coincide con el del certificado
  //entonces procedemos a firmar la cadena 
   if (
     prueba.data.status === "good" && //good revoked unknown
     firmafiel.validaRfcFromPem({ pem: pemPublicKey, rfc: rfc }) //verificacion de rfc de la aplicación con el del certificado
   ) {
-    firma = firmafiel.firmarCadena({
+
+    //firmamos la cadena y obtenemos el objeto firma
+    firma = firmafiel.firmarCadena({  //firma : { status: "ok", firmapem: "-----BEGIN PKCS7-----" }
       pempublica: pemPublicKey,
       pemprivada: pemPrivateKey,
       passprivada: password,
       cadena: cadena
     });
 
-    console.log(firma);
+    console.log(firma); // { status: "ok", firmapem: "-----BEGIN PKCS7-----" };
   }
+
+  //verificarFirma regresa true | false
   var valid = firmafiel.verificarFirma({
     pempublica: pemPublicKey,
     cadena: "TEST",
-    pemfirma: firma
+    pemfirma: firma.firmapem
   });
 
   console.log(valid); //true | false
