@@ -4,7 +4,7 @@ const hash = require("object-hash");
 // const ocsp = require("ocsp");
 const axios = require("axios");
 const forge = require("node-forge");
-const Buffer = require('buffer/').Buffer;
+const Buffer = require("buffer/").Buffer;
 //const Buffer = require("buffer-ponyfill");
 
 class firmafiel {
@@ -211,6 +211,15 @@ class firmafiel {
         })
       ) {
         const cert = this.pemToForgeCert({ pem: pempublica });
+
+        var today = new Date().getTime(); 
+        var from = cert.validity.notBefore.getTime();
+        var to = cert.validity.notAfter.getTime();
+
+        if (today < from || today > to) {
+          throw "El certificado ha expirado";
+        }
+
         const privateKey = this.pemToForgeKey({
           pemkey: pemprivada,
           pass: passprivada
@@ -221,29 +230,14 @@ class firmafiel {
         p7.addSigner({
           key: privateKey,
           certificate: cert,
-          digestAlgorithm: forge.pki.oids.sha256,
-          authenticatedAttributes: [
-            {
-              type: forge.pki.oids.contentType,
-              value: forge.pki.oids.data
-            },
-            {
-              type: forge.pki.oids.messageDigest
-              // value will be auto-populated at signing time
-            },
-            {
-              type: forge.pki.oids.signingTime,
-              // will be encoded as generalized time because it's before 1950
-              value: new Date()
-            }
-          ]
+          digestAlgorithm: forge.pki.oids.sha256
         });
         p7.sign({ detached: true }); //es importante poner {detached:true} porque si no , se anexan los datos sin encriptar es decir cualquiera con la firma puede ver los datos firmados
         const pem = forge.pkcs7.messageToPem(p7);
         return { status: "ok", firmapem: pem };
       }
     } catch (e) {
-      return { status: "error en el firmado" };
+      return { status: "error en el firmado:" + e.stack };
     }
   }
   //verifica una firma devuelve true/false recibe la llave publica en formato pem , la cadena que se firmo, y la firma PKCS#7 en formato PEM
@@ -252,10 +246,10 @@ class firmafiel {
       // pemfirma is the extracted Signature from the S/MIME
       // with added -----BEGIN PKCS7----- around it
       var msg = forge.pkcs7.messageFromPem(pemfirma);
-      var attrs = msg.rawCapture.authenticatedAttributes; // got the list of auth attrs
+      //var attrs = msg.rawCapture.authenticatedAttributes; // got the list of auth attrs
       var sig = msg.rawCapture.signature;
-      var set = forge.asn1.create(forge.asn1.Class.UNIVERSAL, forge.asn1.Type.SET, true, attrs); // packed them inside of the SET object
-      var buf = Buffer.from(forge.asn1.toDer(set).data, 'binary');
+      //var set = forge.asn1.create(forge.asn1.Class.UNIVERSAL, forge.asn1.Type.SET, true, attrs); // packed them inside of the SET object
+      var buf = Buffer.from(cadena, "binary");
       //var buf = Buffer.from(cadena, "binary");
 
       //esta lógica solo verifica que los dos certificados sean iguales el del mensaje firmado y el proporcionado por el usuario
