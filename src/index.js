@@ -23,7 +23,8 @@ class firmafiel {
       },
       {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         }
       }
     );
@@ -38,7 +39,8 @@ class firmafiel {
       },
       {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         }
       }
     );
@@ -212,7 +214,7 @@ class firmafiel {
       ) {
         const cert = this.pemToForgeCert({ pem: pempublica });
 
-        var today = new Date().getTime(); 
+        var today = new Date().getTime();
         var from = cert.validity.notBefore.getTime();
         var to = cert.validity.notAfter.getTime();
 
