@@ -23,8 +23,7 @@ class firmafiel {
       },
       {
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Content-Type": "application/json"
         }
       }
     );
@@ -39,8 +38,7 @@ class firmafiel {
       },
       {
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Content-Type": "application/json"
         }
       }
     );

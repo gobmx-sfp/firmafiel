@@ -1,6 +1,6 @@
 {
   "name": "@gobmx-sfp/firmafiel",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Validador de certificados SSL con verificación OCSP externa",
   "main": "dist/firmafiel.js",
   "scripts": {
