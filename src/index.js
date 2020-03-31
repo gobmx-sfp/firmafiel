@@ -17,7 +17,7 @@ class firmafiel {
   //verifica un certificado en url remota
   verificarCertificado({ certificado, url }) {
     return axios.post(
-      url ? url : "http://llucio-openssl.k8s.funcionpublica.gob.mx/cert",
+      url ? url : "https://llucio-openssl.k8s.funcionpublica.gob.mx/cert",
       {
         cert: certificado
       },
@@ -33,7 +33,7 @@ class firmafiel {
   verificarCertificadoFromBuffer({ derBuffer, url }) {
     const certificado = this.certBufferToPem({ derBuffer: derBuffer });
     return axios.post(
-      url ? url : "http://llucio-openssl.k8s.funcionpublica.gob.mx/cert",
+      url ? url : "https://llucio-openssl.k8s.funcionpublica.gob.mx/cert",
       {
         cert: certificado
       },
