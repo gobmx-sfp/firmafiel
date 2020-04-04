@@ -26,22 +26,22 @@
   "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
-    "buffer": "^5.4.3",
+    "axios": "^0.19.2",
+    "buffer": "^5.5.0",
     "crypto": "^1.0.1",
     "node-forge": "^0.9.1",
-    "object-hash": "^2.0.0"
+    "object-hash": "^2.0.3"
   },
   "bugs": {
     "url": "https://github.com/gobmx-sfp/firmafiel/issues"
   },
   "homepage": "https://github.com/gobmx-sfp/firmafiel#readme",
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/preset-react": "^7.7.4",
-    "babel-loader": "^8.0.6",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
