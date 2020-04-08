@@ -1,4 +1,4 @@
-# Firafiel
+# Firmafiel
 
 Librería para firmado electrónico PKI y verificación de certificados vía
 proxy hacia servicio OCSP, orientado a firmar y verificar certificados
