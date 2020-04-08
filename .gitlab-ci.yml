@@ -1,4 +1,3 @@
 include:
-  - template: Auto-DevOps.gitlab-ci.yml
   - project: desarrollo/ci-cd
     file: Jobs/sonarqube.yml
