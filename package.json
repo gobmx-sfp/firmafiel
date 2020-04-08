@@ -1,7 +1,7 @@
 {
   "name": "@gobmx-sfp/firmafiel",
-  "version": "1.0.13",
-  "description": "Validador de certificados SSL con verificación OCSP externa",
+  "version": "1.1.0",
+  "description": "Validador de certificados SSL y firma/verificación de cadenas digitales para certificados de Firma Electrónica (FIEL) del SAT",
   "main": "dist/firmafiel.js",
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
