@@ -29,7 +29,7 @@ getCertificado(llavePublica): object
 
 verificarValidez(llavePublica, url = oscpCheckerUrl): object
 
-getAtributosPúblicos(llavePublica): object
+getAtributosPublicos(llavePublica): object
 
 hasAtributoValor(llavePublica, valor): string
 ```

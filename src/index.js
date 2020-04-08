@@ -57,7 +57,7 @@ class Firmafiel {
    * Devuelve objeto con nombre y valores de todos los atributos
    * del sujeto certificado enconttados en la llave pública
    */
-  getAtributosPúblicos(llavePublica) {
+  getAtributosPublicos(llavePublica) {
     const {
       subject: { attributes },
     } = this.getCertificado(llavePublica);
