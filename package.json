@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": false,
   "main": "lib/firmafiel.js",
-  "module": "src/index.js",
+  "module": "src/main.js",
   "scripts": {
     "clean": "rimraf lib",
     "build": "webpack --config webpack.config.js",
