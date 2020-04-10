@@ -5,11 +5,13 @@
   "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
   "license": "MIT",
   "private": false,
-  "main": "lib/main.js",
+  "main": "lib/firmafiel.js",
+  "module": "src/index.js",
   "scripts": {
     "clean": "rimraf lib",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint src",
+    "prepare": "npm prepublish",
     "prepublish": "npm run clean && npm run lint && npm run build",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },

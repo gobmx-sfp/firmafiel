@@ -2,18 +2,11 @@
 
 const path = require('path');
 
-module.exports = {
+const baseConfig = {
   mode: 'production',
 
   entry: {
     main: path.resolve('./src/main.js'),
-  },
-
-  output: {
-    path: path.resolve('./lib'),
-    filename: 'firmafiel.js',
-    library: '@gobmx-sfp/firmafiel',
-    libraryTarget: 'umd',
   },
 
   module: {
@@ -30,3 +23,27 @@ module.exports = {
 
   devtool: 'source-map',
 };
+
+module.exports = [
+  Object.assign({}, baseConfig, {
+    target: 'web',
+
+    output: {
+      path: path.resolve('./lib'),
+      filename: 'firmafiel.web.js',
+      library: '@gobmx-sfp/firmafiel',
+      libraryTarget: 'umd',
+    },
+  }),
+
+  Object.assign({}, baseConfig, {
+    target: 'node',
+
+    output: {
+      path: path.resolve('./lib'),
+      filename: 'firmafiel.js',
+      library: '@gobmx-sfp/firmafiel',
+      libraryTarget: 'umd',
+    },
+  }),
+];
