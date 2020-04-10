@@ -43,8 +43,6 @@ module.exports = [
   Object.assign({}, baseConfig, {
     target: 'node',
 
-    node: {},
-
     output: {
       path: path.resolve('./lib'),
       filename: 'firmafiel.js',
