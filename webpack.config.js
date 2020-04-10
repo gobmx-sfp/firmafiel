@@ -1,25 +1,32 @@
+'use strict';
+
 const path = require('path');
 
 module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-    ],
+  mode: 'production',
+
+  entry: {
+    main: path.resolve('./src/main.js'),
   },
-  entry: './src/index.js',
+
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('./lib'),
     filename: 'firmafiel.js',
     library: '@gobmx-sfp/firmafiel',
     libraryTarget: 'umd',
-    globalObject: 'this',
   },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+    ],
+  },
+
   externals: ['axios', 'crypto', 'node-forge', 'object-hash'],
+
   devtool: 'source-map',
 };

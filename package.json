@@ -2,17 +2,45 @@
   "name": "@gobmx-sfp/firmafiel",
   "version": "1.1.0",
   "description": "Validador de certificados SSL y firma/verificación de cadenas digitales para certificados de Firma Electrónica (FIEL) del SAT",
-  "main": "dist/firmafiel.js",
+  "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
+  "license": "MIT",
+  "private": false,
+  "main": "lib/main.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
-    "build": "webpack --mode production"
+    "clean": "rimraf lib",
+    "build": "webpack --config webpack.config.js",
+    "lint": "eslint src",
+    "prepublish": "npm run clean && npm run lint && npm run build",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "files": [
-    "dist"
+    "lib",
+    "src"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gobmx-sfp/firmafiel.git"
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "crypto": "^1.0.1",
+    "node-forge": "^0.9.1",
+    "object-hash": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.5.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "mocha": "^7.1.1",
+    "rimraf": "^3.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "keywords": [
     "firma",
@@ -23,25 +51,12 @@
     "sat",
     "pki"
   ],
-  "author": "Luis Lucio <llucio@funcionpublica.gob.mx>",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "buffer": "^5.5.0",
-    "crypto": "^1.0.1",
-    "node-forge": "^0.9.1",
-    "object-hash": "^2.0.3"
+  "homepage": "https://github.com/gobmx-sfp/firmafiel#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gobmx-sfp/firmafiel.git"
   },
   "bugs": {
     "url": "https://github.com/gobmx-sfp/firmafiel/issues"
-  },
-  "homepage": "https://github.com/gobmx-sfp/firmafiel#readme",
-  "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
-    "babel-loader": "^8.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
   }
 }
