@@ -17,7 +17,8 @@
   },
   "files": [
     "lib",
-    "src"
+    "babel.config.json",
+    "webpack.config.js"
   ],
   "dependencies": {
     "axios": "^0.19.2",
