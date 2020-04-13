@@ -13,7 +13,7 @@ const oscpCheckerUrl =
  * hacia el endpoint OSCP en línea del SAT
  */
 export async function verificarValidez(llavePublica, url = oscpCheckerUrl) {
-  await import('axios');
+  const axios = await import('axios');
   const cert = getCertificado(llavePublica);
 
   return axios
