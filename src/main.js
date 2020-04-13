@@ -18,7 +18,7 @@ export async function verificarValidez(llavePublica, url = oscpCheckerUrl) {
 
   return axios
     .post(url, { cert: pki.certificateToPem(cert) })
-    .then(({ data }) => data);
+    .then(({ data: { status } = {} }) => status);
 }
 
 /*
