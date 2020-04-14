@@ -47,7 +47,7 @@ module.exports = [
       path: path.resolve('./lib'),
       filename: 'firmafiel.js',
       library: '@gobmx-sfp/firmafiel',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'umd',
     },
   }),
 ];
