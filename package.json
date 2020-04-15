@@ -24,7 +24,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
-    "crypto": "^1.0.1",
     "node-forge": "^0.9.1",
     "object-hash": "^2.0.3"
   },

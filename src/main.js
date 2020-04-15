@@ -33,15 +33,15 @@ export function getCertificado(data) {
     // Intentar leer desde formato DER
     const asn1Cert = asn1.fromDer(util.createBuffer(data));
     return pki.certificateFromAsn1(asn1Cert);
-  } catch {}
+  } catch (e) {}
   try {
     // Intentar leer desde formato PEM
     return pki.certificateFromPem(data);
-  } catch {}
+  } catch (e) {}
   try {
     // Intentar Leer Asn1
     return pki.certificateFromAsn1(data);
-  } catch {}
+  } catch (e) {}
   try {
     // Intentar leer desde datos binarios
     return pki.certificateFromPem(toPem(data, 'CERTIFICATE'));
@@ -71,7 +71,7 @@ export function getAtributosPublicos(llavePublica) {
  * de los atributos del sujeto certificado (por ejemplo un RFC)
  */
 export function hasAtributoValor(llavePublica, valor) {
-  const attributes = Object.values(getSubjectAttributes(llavePublica));
+  const attributes = Object.values(getAtributosPublicos(llavePublica));
   return attributes.includes(valor);
 }
 
@@ -82,7 +82,7 @@ export function desencriptarLlavePrivada(llavePrivada, contrasena) {
   try {
     // Intentar desencriptar diréctamente
     return pki.decryptRsaPrivateKey(llavePrivada, contrasena);
-  } catch {
+  } catch (err) {
     try {
       // Intentar convertir primero a formato PEM
       const pemKey = toPem(llavePrivada, 'ENCRYPTED PRIVATE KEY');
@@ -109,10 +109,9 @@ export function validarLlaves(llavePublica, llavePrivadaDesencriptada) {
  * Opcionalmente marcado como confidencial, para no incluir el mensaje
  * firmado dentro de la misma firma.
  */
-export function firmarCadena({
+export async function firmarCadena({
   llavePublica,
-  llavePrivada,
-  contrasena,
+  llavePrivadaDesencriptada,
   cadena,
   confidencial = true,
 }) {
@@ -126,8 +125,7 @@ export function firmarCadena({
     throw new Error('El certificado ha expirado');
   }
 
-  const decryptedKey = desencriptarLlavePrivada(llavePrivada, contrasena);
-  if (!validarLlaves(cert, decryptedKey)) {
+  if (!validarLlaves(cert, llavePrivadaDesencriptada)) {
     throw new Error(
       'La llave privada no correpsonde con el certificado provisto'
     );
@@ -138,7 +136,7 @@ export function firmarCadena({
   p7.content = util.createBuffer(cadena, 'utf8');
   p7.addCertificate(cert);
   p7.addSigner({
-    key: decryptedKey,
+    key: llavePrivadaDesencriptada,
     certificate: cert,
     digestAlgorithm: pki.oids.sha256,
   });
