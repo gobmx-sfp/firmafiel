@@ -1,6 +1,7 @@
 import { asn1, pki, util, pkcs7, options } from 'node-forge';
 import { createVerify } from 'crypto';
 import hash from 'object-hash';
+export { crearPdf } from './pdf';
 
 options.usePureJavaScript = true;
 
