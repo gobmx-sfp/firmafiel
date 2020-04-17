@@ -1,7 +1,7 @@
 import commonmark from 'pdfkit-commonmark';
 import CommonmarkPDFRenderer from 'pdfkit-commonmark';
 import PDFDocument from 'pdfkit';
-import { pdfkitAddPlaceholder } from 'node-signpdf';
+import signer, { pdfkitAddPlaceholder } from 'node-signpdf';
 import { getCertificado } from './main';
 
 const writer = new CommonmarkPDFRenderer();
