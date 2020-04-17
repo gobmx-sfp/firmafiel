@@ -29,7 +29,7 @@
     "node-forge": "^0.9.1",
     "node-signpdf": "^1.2.3",
     "object-hash": "^2.0.3",
-    "pdfkit": "^0.11.0",
+    "pdfkit": "^0.10.0",
     "pdfkit-commonmark": "^0.2.0"
   },
   "devDependencies": {
