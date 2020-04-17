@@ -53,7 +53,7 @@ const baseConfig = {
     },
   },
 
-  externals: ['axios', 'node-forge', 'core-js', 'pdfkit'],
+  externals: ['axios', 'node-forge', 'core-js'],
 };
 
 module.exports = [
