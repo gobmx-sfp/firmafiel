@@ -1,13 +1,17 @@
+import fs from 'fs';
+import Helvetica from '!!raw-loader!pdfkit/js/data/Helvetica.afm';
 import commonmark from 'commonmark';
 import CommonmarkPDFRenderer from 'pdfkit-commonmark';
 import PDFDocument from 'pdfkit';
 import signer, { pdfkitAddPlaceholder } from 'node-signpdf';
 import { getCertificado } from './main';
 
+fs.writeFileSync('data/Helvetica.afm', Helvetica);
+
 const writer = new CommonmarkPDFRenderer();
 const reader = new commonmark.Parser();
 
-export function crearPdf({ markdown, signaturaPlaceholder }) {
+export function crearPdf({ markdown, signaturaPlaceholder = {} }) {
   const pdf = new PDFDocument();
   const parsed = reader.parse(markdown);
 
