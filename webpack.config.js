@@ -23,6 +23,10 @@ const baseConfig = {
     ],
   },
 
+  node: {
+    fs: 'empty',
+  },
+
   externals,
 };
 
