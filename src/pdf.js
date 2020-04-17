@@ -12,14 +12,19 @@ fs.writeFileSync('data/Helvetica.afm', Helvetica);
 fs.writeFileSync('data/Helvetica-Bold.afm', HelveticaBold);
 fs.writeFileSync('data/Times-Roman.afm', TimesRoman);
 
-const writer = new CommonmarkPDFRenderer();
-const reader = new commonmark.Parser();
-
-export function crearPdf({ markdown, signaturaPlaceholder = {} }) {
+export function crearPdf({ markdown, texto, signaturaPlaceholder = {} }) {
   const pdf = new PDFDocument();
-  const parsed = reader.parse(markdown);
 
-  writer.render(pdf, parsed);
+  if (markdown) {
+    const writer = new CommonmarkPDFRenderer();
+    const reader = new commonmark.Parser();
+    const parsed = reader.parse(markdown);
+    writer.render(pdf, parsed);
+  } else if (texto) {
+    pdf.text(texto, 0, 0);
+  } else {
+    throw new Error('Requerido markdown o texto');
+  }
 
   const refs = pdfkitAddPlaceholder({
     pdf,
