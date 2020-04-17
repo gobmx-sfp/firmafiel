@@ -24,8 +24,6 @@ const baseConfig = {
   },
 
   externals,
-
-  devtool: 'source-map',
 };
 
 module.exports = [
