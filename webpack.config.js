@@ -2,7 +2,6 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 const externals = Object.keys(
   require(path.resolve('./package.json')).dependencies || {}
@@ -47,14 +46,6 @@ const baseConfig = {
       template: path.resolve(__dirname, 'src/index.html'),
     }),
   ],
-
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        exclude: /src[/\\]index\.js$/, // not working
-      }),
-    ],
-  },
 
   resolve: {
     alias: {
