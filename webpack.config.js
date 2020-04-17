@@ -23,8 +23,10 @@ const baseConfig = {
     ],
   },
 
-  node: {
-    fs: 'empty',
+  resolve: {
+    alias: {
+      fs: 'memfs',
+    },
   },
 
   externals,
