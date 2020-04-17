@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": false,
   "main": "lib/firmafiel.js",
+  "browser": "lib/firmafiel.web.js",
   "module": "src/main.js",
   "scripts": {
     "clean": "rimraf lib",
