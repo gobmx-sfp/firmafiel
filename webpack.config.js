@@ -53,6 +53,8 @@ const baseConfig = {
     },
   },
 
+  devtool: 'sourcemap',
+
   externals: ['axios', 'node-forge', 'core-js'],
 };
 
