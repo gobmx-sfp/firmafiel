@@ -53,7 +53,7 @@ const baseConfig = {
     },
   },
 
-  externals,
+  externals: ['axios', 'node-forge'],
 };
 
 module.exports = [
