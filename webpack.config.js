@@ -1,6 +1,8 @@
 'use strict';
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const externals = Object.keys(
   require(path.resolve('./package.json')).dependencies || {}
@@ -16,6 +18,23 @@ const baseConfig = {
   module: {
     rules: [
       {
+        enforce: 'post',
+        test: /fontkit[/\\]index.js$/,
+        loader: 'transform-loader?brfs',
+      },
+      {
+        enforce: 'post',
+        test: /unicode-properties[/\\]index.js$/,
+        loader: 'transform-loader?brfs',
+      },
+      {
+        enforce: 'post',
+        test: /linebreak[/\\]src[/\\]linebreaker.js/,
+        loader: 'transform-loader?brfs',
+      },
+      { test: /src[/\\]assets/, loader: 'arraybuffer-loader' },
+      { test: /\.afm$/, loader: 'raw-loader' },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader',
@@ -23,9 +42,23 @@ const baseConfig = {
     ],
   },
 
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src/index.html'),
+    }),
+  ],
+
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        exclude: /src[/\\]index\.js$/, // not working
+      }),
+    ],
+  },
+
   resolve: {
     alias: {
-      fs: 'memfs',
+      fs: 'pdfkit/js/virtual-fs.js',
     },
   },
 
