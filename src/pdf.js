@@ -1,4 +1,4 @@
-import commonmark from 'pdfkit-commonmark';
+import commonmark from 'commonmark';
 import CommonmarkPDFRenderer from 'pdfkit-commonmark';
 import PDFDocument from 'pdfkit';
 import signer, { pdfkitAddPlaceholder } from 'node-signpdf';
