@@ -1,6 +1,8 @@
 import fs from 'fs';
 import Helvetica from '!!raw-loader!pdfkit/js/data/Helvetica.afm';
 import HelveticaBold from '!!raw-loader!pdfkit/js/data/Helvetica-Bold.afm';
+import TimesRoman from '!!raw-loader!pdfkit/js/data/Times-Roman.afm';
+import TimesRomanBold from '!!raw-loader!pdfkit/js/data/Times-Roman-Bold.afm';
 import commonmark from 'commonmark';
 import CommonmarkPDFRenderer from 'pdfkit-commonmark';
 import PDFDocument from 'pdfkit';
@@ -9,6 +11,8 @@ import { getCertificado } from './main';
 
 fs.writeFileSync('data/Helvetica.afm', Helvetica);
 fs.writeFileSync('data/Helvetica-Bold.afm', HelveticaBold);
+fs.writeFileSync('data/Times-Roman.afm', TimesRoman);
+fs.writeFileSync('data/Times-Roman-Bold.afm', TimesRomanBold);
 
 const writer = new CommonmarkPDFRenderer();
 const reader = new commonmark.Parser();
